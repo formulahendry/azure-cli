@@ -1,6 +1,6 @@
 environment:
   access_token:
-    secure: Lp6H0p+ZjwOm/iWKlV1ulqsFes8YvsgCmMcBELicfmGHNu7H09eA91ncjPGtY5Sz
+    secure: W9ovo90iVrup78zgIzyiADktZ57tJAXi0yDpF3qRydY6iinLeGX65PlRxgVu52qV
 
 install:
   - python -m pip install -r requirements.txt
