@@ -23,8 +23,8 @@ artifacts:
 on_success:
   - git clone -q --branch=master %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
   - cd %TEMP%\azure-cli-content
-  - if exist %TEMP%\azure-cli-content\yml rmdir /s /q %TEMP%\azure-cli-content\yml
-  - robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\yml /e & IF %ERRORLEVEL% LEQ 1 exit 0
+  - if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% rmdir /s /q %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
+  - robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF %ERRORLEVEL% LEQ 1 exit 0
   - git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git config --global user.email "%GIT_USER_EMAIL%"
