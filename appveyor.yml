@@ -1,3 +1,5 @@
+clone_depth: 5
+
 environment:
   access_token:
     secure: W9ovo90iVrup78zgIzyiADktZ57tJAXi0yDpF3qRydY6iinLeGX65PlRxgVu52qV
@@ -21,7 +23,7 @@ artifacts:
   - path: doc\sphinx\_build
 
 on_success:
-  - git clone -q --branch=master %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
+  - git clone --depth 5 -q --branch=master %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
   - cd %TEMP%\azure-cli-content
   - if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% rmdir /s /q %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
   - robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF %ERRORLEVEL% LEQ 1 exit 0
@@ -30,5 +32,4 @@ on_success:
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
   - git add -A
-  - git commit -m "Update Document Content"
-  - git push origin master
+  - git diff-index --quiet --cached HEAD & IF %ERRORLEVEL% EQ 0 (appveyor AddMessage "No Document Changes") ELSE (git commit -m "Update Document Content" & git push origin master) # Exit code of git diff-index (0 == no differences; 1 == differences)
