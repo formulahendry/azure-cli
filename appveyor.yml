@@ -32,4 +32,4 @@ on_success:
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
   - git add -A
-  - git diff-index --quiet --cached HEAD & IF %ERRORLEVEL% EQ 0 (appveyor AddMessage "No Document Changes") ELSE (git commit -m "Update Document Content" & git push origin master) # Exit code of git diff-index (0 == no differences; 1 == differences)
+  - git diff-index --quiet --cached HEAD & IF %ERRORLEVEL% EQU 0 (appveyor AddMessage "No Document Changes") ELSE (git commit -m "Update Document Content" & git push origin master) # Exit code of git diff-index (0 == no differences; 1 == differences)
