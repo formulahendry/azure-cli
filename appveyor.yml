@@ -28,6 +28,7 @@ on_success:
   - if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% rmdir /s /q %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
   - SETLOCAL EnableDelayedExpansion
   - robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF !ERRORLEVEL! LEQ 1 exit 0
+  - robocopy %APPVEYOR_BUILD_FOLDER%\doc\sphinx\_build %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF !ERRORLEVEL! LEQ 1 exit 0
   - git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git config --global user.email "%GIT_USER_EMAIL%"
