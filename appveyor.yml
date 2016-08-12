@@ -2,7 +2,7 @@ clone_depth: 5
 
 environment:
   access_token:
-    secure: W9ovo90iVrup78zgIzyiADktZ57tJAXi0yDpF3qRydY6iinLeGX65PlRxgVu52qV
+    secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
 install:
   - python -m pip install -r requirements.txt
@@ -26,11 +26,11 @@ on_success:
   - git clone --depth 5 -q --branch=master %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
   - cd %TEMP%\azure-cli-content
   - if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% rmdir /s /q %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
-  - robocopy %APPVEYOR_BUILD_FOLDER%\doc\sphinx\_build %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF %ERRORLEVEL% LEQ 1 exit 0 
   - robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF %ERRORLEVEL% LEQ 1 exit 0
+  - robocopy %APPVEYOR_BUILD_FOLDER%\doc\sphinx\_build %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & IF %ERRORLEVEL% LEQ 1 exit 0 
   - git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
   - git add -A
-  - git diff-index --quiet --cached HEAD & IF %ERRORLEVEL% EQU 0 (appveyor AddMessage "No Document Changes") ELSE (git commit -m "Update Document Content" & git push origin master) # Exit code of git diff-index (0 == no differences; 1 == differences)
+  - git diff-index --quiet --cached HEAD & IF %ERRORLEVEL% EQU 0 (appveyor AddMessage "No Document Changes") ELSE (git commit -m "Update Document Content" & git push origin master & appveyor AddMessage "Document Updated") # Exit code of git diff-index (0 == no differences; 1 == differences)
