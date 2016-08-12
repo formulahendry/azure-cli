@@ -1,3 +1,6 @@
+init:
+  - git config --global core.autocrlf false
+
 clone_depth: 5
 
 environment:
