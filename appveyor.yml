@@ -8,6 +8,10 @@ environment:
     secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
 install:
+  - echo %APPVEYOR_REPO_NAME%
+  - echo %APPVEYOR_REPO_BRANCH%
+  - echo %APPVEYOR_PULL_REQUEST_NUMBER%
+  - echo %APPVEYOR_PULL_REQUEST_TITLE%
   - python -m pip install -r requirements.txt
   - python -m pip install -e . # Install the CLI as a package
   - python -m pip install sphinx
