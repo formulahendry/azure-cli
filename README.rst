@@ -1,4 +1,4 @@
-Microsoft Project AZ - Preview Test!
+Microsoft Project AZ - Preview
 ==================================
 
 .. image:: https://travis-ci.org/Azure/azure-cli.svg?branch=master
