@@ -50,7 +50,7 @@ def _install_or_update(component_name, version, link, private, upgrade=False):
                  + pkg_index_options)
 
 helps['component list'] = """
-    short-summary: List the installed components for demo!
+    short-summary: List the installed components
 """
 def list_components():
     return sorted([{'name': dist.key.replace(COMPONENT_PREFIX, ''), 'version': dist.version}
