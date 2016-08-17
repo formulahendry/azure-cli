@@ -34,5 +34,6 @@ on_success:
   - git clone --depth 5 -q --branch=%TARGET_BRANCH% %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
   - cd %TEMP%\azure-cli-content
   - if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% rmdir /s /q %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
-  - SETLOCAL EnableDelayedExpansion & robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & if !ERRORLEVEL! EQU 1 (echo eq111) else (echo eq000)
+  - SETLOCAL EnableDelayedExpansion & robocopy %TEMP%\azure-cli-xml2yml\yml-output %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% /e & if !ERRORLEVEL! EQU 1 (exit 2) else (exit 0)
+  - echo good
 
