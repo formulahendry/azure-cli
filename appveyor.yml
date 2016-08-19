@@ -4,8 +4,9 @@ init:
 clone_depth: 5
 
 environment:
-  access_token:
-    secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
+  global:
+    access_token:
+      secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
   matrix:
     - PYTHON: "C:\\Python27"
