@@ -10,7 +10,7 @@ environment:
 
 install:
   - echo %PATH%"
-  - SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
   - echo %PATH%"
   - python --version
   - python -m pip install -r requirements.txt
