@@ -7,11 +7,18 @@ environment:
   access_token:
     secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
+  matrix:
+    - PYTHON: "C:\\Python27"
+    - PYTHON: "C:\\Python34"
+    - PYTHON: "C:\\Python34-x64"
+    - PYTHON: "C:\\Python35"
+    - PYTHON: "C:\\Python35-x64"
+
 install:
-  - python -m pip install -r requirements.txt
-  - python -m pip install -e . # Install the CLI as a package
-  - python -m pip install sphinx
-  - python scripts/command_modules/install.py # Install the command modules as packages
+  - %PYTHON%\python -m pip install -r requirements.txt
+  - %PYTHON%\python -m pip install -e . # Install the CLI as a package
+  - %PYTHON%\python -m pip install sphinx
+  - %PYTHON%\python scripts/command_modules/install.py # Install the command modules as packages
 
 build_script:
   - cd doc\sphinx 
