@@ -4,22 +4,14 @@ init:
 clone_depth: 5
 
 environment:
-  global:
-    access_token:
-      secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
-
-  matrix:
-    - PYTHON: "C:\\Python27"
-    - PYTHON: "C:\\Python34"
-    - PYTHON: "C:\\Python34-x64"
-    - PYTHON: "C:\\Python35"
-    - PYTHON: "C:\\Python35-x64"
+  access_token:
+    secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
 install:
-  - %PYTHON%\python -m pip install -r requirements.txt
-  - %PYTHON%\python -m pip install -e . # Install the CLI as a package
-  - %PYTHON%\python -m pip install sphinx
-  - %PYTHON%\python scripts/command_modules/install.py # Install the command modules as packages
+  - C:\Python34\python.exe -m pip install -r requirements.txt
+  - C:\Python34\python.exe -m pip install -e . # Install the CLI as a package
+  - C:\Python34\python.exe -m pip install sphinx
+  - C:\Python34\python.exe scripts/command_modules/install.py # Install the command modules as packages
 
 build_script:
   - cd doc\sphinx 
@@ -44,6 +36,3 @@ on_success:
   - git config --global user.name "%GIT_USER_NAME%"
   - git add -A
   - git diff --quiet --exit-code --cached || git commit -m "Update Document Content" && git push origin %TARGET_BRANCH% && appveyor AddMessage "Document Updated"
-
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
