@@ -4,14 +4,16 @@ init:
 clone_depth: 5
 
 environment:
+  PYTHON: "C:\\Python34"
   access_token:
     secure: VMFbecLLHzDq/09YDPbcM0VDDSwwgY57vr5GXK6cZZ4Ti/Xs5RZoylzV8MMr1350
 
 install:
-  - C:\Python34\python.exe -m pip install -r requirements.txt
-  - C:\Python34\python.exe -m pip install -e . # Install the CLI as a package
-  - C:\Python34\python.exe -m pip install sphinx
-  - C:\Python34\python.exe scripts/command_modules/install.py # Install the command modules as packages
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python -m pip install -r requirements.txt
+  - python -m pip install -e . # Install the CLI as a package
+  - python -m pip install sphinx
+  - python scripts/command_modules/install.py # Install the command modules as packages
 
 build_script:
   - cd doc\sphinx 
