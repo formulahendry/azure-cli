@@ -20,7 +20,8 @@ on_success:
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
   - git clone --depth 5 -q --branch=%TARGET_BRANCH% %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
-  - cmd: >-
+  - cmd: |
+      echo 111
       if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% 
       (
         cd %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
