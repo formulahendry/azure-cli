@@ -34,7 +34,8 @@ on_success:
   - git config --global user.name "%GIT_USER_NAME%"
   - git clone --depth 5 -q --branch=%TARGET_BRANCH% %GIT_CONTENT_REPO_URL% %TEMP%\azure-cli-content
   - cmd: >-
-      if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% (
+      if exist %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER% 
+      (
         cd %TEMP%\azure-cli-content\%YML_OUTPUT_FOLDER%
         for /d %%p IN (*) do rmdir "%%p" /s /q
         echo %FILES_TO_DELETE%
