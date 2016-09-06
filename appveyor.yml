@@ -16,9 +16,6 @@ install:
   - python scripts/command_modules/install.py # Install the command modules as packages
 
 build_script:
-  - cd doc\sphinx 
-  - make xml
-  - mkdir %TEMP%\azure-cli-xml2yml
   - ps: |
       $docSourceRaw = Get-Content -Raw -Path "$env:APPVEYOR_BUILD_FOLDER\doc\sphinx\azhelpgen\doc_source_map.json" | ConvertFrom-Json
       $docFiles = $docSourceRaw | Get-Member -type NoteProperty | %{ $docSourceRaw."$($_.Name)" }
@@ -38,6 +35,9 @@ build_script:
           }
       }
       $fileCommitMap | ConvertTo-Json | Out-File "$env:APPVEYOR_BUILD_FOLDER\doc\sphinx\doc_commit_map.json"
+  - cd doc\sphinx 
+  - make xml
+  - mkdir %TEMP%\azure-cli-xml2yml
   - cd %TEMP%\azure-cli-xml2yml
   - nuget install azure.cli.doc.xml2yml -Source https://ci.appveyor.com/nuget/azure-cli-doc-proc
   - cd azure.cli.doc.xml2yml*\tools
