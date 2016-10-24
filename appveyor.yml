@@ -1,7 +1,3 @@
-branches:
-  only:
-    - master
-
 init:
   - git config --global core.autocrlf false
 
@@ -17,6 +13,8 @@ install:
   - python -m pip install sphinx
   - python scripts/command_modules/install.py # Install the command modules as packages
   - python -m pip install -e src/azure-cli
+  - AddMessage "Warning"
+  - AddMessage "123"
 
 build_script:
   - ps: |
